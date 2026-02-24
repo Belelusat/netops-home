@@ -913,6 +913,9 @@ cat > /etc/issue.net << EOF
 EOF
 
 # Validate SSH config before restarting
+# /run/sshd must exist for sshd -t to pass — it's normally created on service
+# start but doesn't exist yet on a fresh install before first SSH restart
+mkdir -p /run/sshd
 sshd -t >> "$NETOPS_LOG_FILE" 2>&1 || die "SSH configuration validation failed. Check log file."
 systemctl restart sshd
 log OK "SSH hardened and restarted"
