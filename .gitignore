@@ -1,0 +1,20 @@
+# Run this once per repo — change into each folder first
+Set-Content .gitignore @"
+# Environment-specific variable files — never commit these
+*.work.vars
+*.prod.vars
+*.local.vars
+bootstrap.home.vars
+
+# OS clutter
+Thumbs.db
+desktop.ini
+.DS_Store
+
+# Editor clutter
+.vscode/settings.json
+*.swp
+
+# Ansible vault files (future — never commit unencrypted secrets)
+*.vault
+"@
